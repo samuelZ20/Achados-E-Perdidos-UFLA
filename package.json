@@ -1,0 +1,23 @@
+{
+  "name": "achados-e-perdidos-ufla",
+  "version": "1.0.0",
+  "description": "API REST para um sistema de Achados e Perdidos para a UFLA (projeto CompJr💙)",
+  "main": "achados_e_perdidos.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samuelZ20/Achados-E-Perdidos-UFLA.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samuelZ20/Achados-E-Perdidos-UFLA/issues"
+  },
+  "homepage": "https://github.com/samuelZ20/Achados-E-Perdidos-UFLA#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
