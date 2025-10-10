@@ -11,10 +11,10 @@ app.get('/', (req, res) => {
 async function testDatabaseConnection() {
   try {
     const result = await db.query('SELECT NOW()');
-    console.log('🎉 Conexão com o banco de dados (PostgreSQL) bem-sucedida!');
+    console.log('Conexão com o banco de dados (PostgreSQL) bem-sucedida!');
     console.log('   -> Resposta do banco:', result.rows[0]); 
   } catch (error) {
-    console.error('❌ Erro ao conectar com o banco de dados:', error);
+    console.error('Erro ao conectar com o banco de dados:', error);
   }
 }
 
@@ -22,6 +22,5 @@ async function testDatabaseConnection() {
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta http://localhost:${PORT}`);
   
-  // A LINHA CRUCIAL QUE ESTAVA FALTANDO:
   testDatabaseConnection(); 
 });

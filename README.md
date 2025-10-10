@@ -1,2 +1,2 @@
-# Achados-E-Perdidos-UFLA
-API REST para um sistema de Achados e Perdidos para a UFLA (projeto CompJr💙)
+# Clube do Filme
+API REST para um sistema de avaliação de filmes vistos pelos usuários(projeto CompJr💙)
