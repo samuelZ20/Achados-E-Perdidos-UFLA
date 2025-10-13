@@ -3,6 +3,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('./src/database');
+const authMiddleware = require('./src/middlewares/authMiddleware');
 
 //CONFIG
 const app = express();
@@ -41,7 +42,7 @@ app.post('/users', async (req, res) => {
 });
 
 // listar todos os usuarios
-app.get('/users', async (req, res) => {
+app.get('/users',authMiddleware, async (req, res) => {
   try {
     const resultado = await db.query('SELECT id, nome, email, nivel FROM usuario');
     
