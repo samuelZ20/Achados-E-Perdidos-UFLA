@@ -1,25 +1,26 @@
-// --- Importações ---
+// importações
 const express = require('express');
 const db = require('./src/database');
 
-// --- Importação das Rotas ---
+// importando as rotas
 const userRoutes = require('./src/routes/userRoutes');
+const filmeRoutes = require('./src/routes/filmeRoutes');
 // (No futuro, você importará as rotas de filmes e reviews aqui também)
 
-// --- Configuração Inicial ---
+//config inicial
 const app = express();
 const PORT = 3000;
 app.use(express.json());
 
-// --- Rotas Principais ---
 
-// Rota de teste
+// rota de teste
 app.get('/', (req, res) => {
   res.send('API do Clube do Filme está no ar!');
 });
 
-// O app agora "usa" as rotas de usuário no endereço base '/users'
+//principais rotas
 app.use('/users', userRoutes);
+app.use('/filmes', filmeRoutes);
 
 // A rota de login agora será separada
 const userController = require('./src/controllers/userController');
