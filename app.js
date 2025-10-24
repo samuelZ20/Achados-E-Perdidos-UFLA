@@ -5,6 +5,7 @@ const db = require('./src/database');
 // importando as rotas
 const userRoutes = require('./src/routes/userRoutes');
 const filmeRoutes = require('./src/routes/filmeRoutes');
+const reviewRoutes = require('./src/routes/reviewRoutes');
 // (No futuro, você importará as rotas de filmes e reviews aqui também)
 
 //config inicial
