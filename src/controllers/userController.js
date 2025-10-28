@@ -38,6 +38,56 @@ const userController = {
     }
   },
 
+  //UPDATE de um usuário
+  async update(req, res) {
+    const userId = req.params.id;
+    const { nome, email, senha, nivel } = req.body;
+    try {
+      const campos = [];
+      const valores = [];
+      let indice = 1;
+      if (nome) {
+        campos.push(`nome = $${indice++}`);
+        valores.push(nome);
+      }
+      if (email) {
+        campos.push(`email = $${indice++}`);
+        valores.push(email);
+      }
+      if (senha) {
+        const hashDaSenha = await bcrypt.hash(senha, 10);
+        campos.push(`senha = $${indice++}`);
+        valores.push(hashDaSenha);
+      }
+      if (nivel) {
+        campos.push(`nivel = $${indice++}`);
+        valores.push(nivel);
+      }
+      if (campos.length === 0) {
+        return res.status(400).json({ error: 'Nenhum campo para atualizar.' });
+      }
+      valores.push(userId);
+      const query = `UPDATE usuario SET ${campos.join(', ')} WHERE id = $${indice} RETURNING id, nome, email, nivel`;
+      const resultado = await db.query(query, valores);
+      return res.status(200).json({ message: 'Usuário atualizado com sucesso!', usuario: resultado.rows[0] });
+    } catch (error) {
+      console.error('❌ Erro ao atualizar usuário:', error);
+      return res.status(500).json({ error: 'Erro interno do servidor.' });
+    }
+  },
+
+  //DELETE de um usuário
+  async delete(req, res) {
+    const userId = req.params.id;
+    try {
+      await db.query('DELETE FROM usuario WHERE id = $1', [userId]);
+      return res.status(200).json({ message: 'Usuário deletado com sucesso!' });
+    } catch (error) {
+      console.error('❌ Erro ao deletar usuário:', error);
+      return res.status(500).json({ error: 'Erro interno do servidor.' });
+    }
+  },
+
   //LOGIN de um usuário ---
   async login(req, res) {
     const { email, senha } = req.body;
