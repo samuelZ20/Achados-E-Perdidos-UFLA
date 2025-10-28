@@ -12,5 +12,11 @@ router.post('/', userController.create);
 //listar todos os usuários (READ)
 router.get('/', [authMiddleware, adminMiddleware], userController.listAll);
 
+// atualizar um usuário (UPDATE)
+router.put('/:id', [authMiddleware, adminMiddleware], userController.update);
+
+//deletar um usuário (DELETE)
+router.delete('/:id', [authMiddleware, adminMiddleware], userController.delete);
+    
 // exporta o mapa de rotas
 module.exports = router;
